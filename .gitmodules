@@ -4,3 +4,6 @@
 [submodule "cpplint"]
 	path = cpplint
 	url = https://github.com/cpplint/cpplint.git
+[submodule "lib/cpplint"]
+	path = lib/cpplint
+	url = https://github.com/cpplint/cpplint.git
