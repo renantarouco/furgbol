@@ -1,10 +1,12 @@
+// Copyright 2019 FURGBot
+
+#include <iostream>
+#include <string>
+
 #include "io/multicast_receiver.h"
 
-#include <string>
-#include <iostream>
-
 int main() {
-    furgbol::io::MulticastReceiver mcr;
+    furgbol::io::MulticastReceiver mcr("224.32.25.7", 20010);
     mcr.datagram_received.subscribe(
         [](std::string datagram){
             std::cout << "next datagram: " << datagram << std::endl;
@@ -14,6 +16,5 @@ int main() {
         },
         [](){
             std::cout << "completed" << std::endl;
-        }
-    );
+        });
 }
