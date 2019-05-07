@@ -1,0 +1,6 @@
+[submodule "lib/RxCpp"]
+	path = lib/RxCpp
+	url = https://github.com/ReactiveX/RxCpp.git
+[submodule "cpplint"]
+	path = cpplint
+	url = https://github.com/cpplint/cpplint.git
