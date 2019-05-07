@@ -6,3 +6,6 @@ include_directories("include"
 
 add_library(furgbol_io SHARED
   "src/io/multicast_receiver.cc")
+
+add_executable(testing "src/main.cpp")
+target_link_libraries(testing furgbol_io)
