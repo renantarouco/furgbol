@@ -4,17 +4,24 @@
 #define IO_MULTICAST_RECEIVER_H
 
 #include <string>
-
-#include <rxcpp/rx.hpp>
+#include <boost/asio.hpp>
 
 namespace furgbol {
 namespace io {
 
 class MulticastReceiver {
- public:
-  MulticastReceiver();
-  ~MulticastReceiver();
-  rxcpp::observable<std::string> datagram_received;
+  private:
+    boost::asio::io_service io_;
+    boost::asio::ip::udp::endpoint endpoint_;
+    boost::asio::ip::udp::socket socket_;
+    boost::asio::ip::udp::endpoint sender_endpoint_;
+    char buffer_[8192];
+    int size_t;
+
+  public:
+    MulticastReceiver(std::string group_ip,uint16_t port);
+    ~MulticastReceiver();
+    int get_size();
 };
 
 }  // namespace io
