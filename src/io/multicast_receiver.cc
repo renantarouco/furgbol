@@ -1,6 +1,7 @@
 // Copyright 2019 FURGBot
 
 #include "io/multicast_receiver.h"
+#include <string>
 namespace furgbol {
 namespace io {
 
@@ -21,6 +22,10 @@ MulticastReceiver::~MulticastReceiver() {}
 int MulticastReceiver::get_size(){
     return size_t;
 }
-
+std::string MulticastReceiver::get_s(){
+    std::string B;
+    B = buffer_;
+    return B;
+}
 }
 }

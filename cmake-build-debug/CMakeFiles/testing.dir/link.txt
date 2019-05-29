@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/testing.dir/src/main.cpp.o  -o testing -Wl,-rpath,/home/ab/Workspace/furgbol/cmake-build-debug libfurgbol_io.so /usr/lib/x86_64-linux-gnu/libboost_system.so 

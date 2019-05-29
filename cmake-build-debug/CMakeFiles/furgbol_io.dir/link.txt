@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -g  -shared -Wl,-soname,libfurgbol_io.so -o libfurgbol_io.so CMakeFiles/furgbol_io.dir/src/io/multicast_receiver.cc.o 

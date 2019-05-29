@@ -1,0 +1,4 @@
+/home/ab/Workspace/furgbol/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/ab/Workspace/furgbol/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/ab/Workspace/furgbol/cmake-build-debug/CMakeFiles/furgbol_io.dir
+/home/ab/Workspace/furgbol/cmake-build-debug/CMakeFiles/testing.dir

@@ -22,6 +22,7 @@ class MulticastReceiver {
     MulticastReceiver(std::string group_ip,uint16_t port);
     ~MulticastReceiver();
     int get_size();
+    std::string get_s();
 };
 
 }  // namespace io
