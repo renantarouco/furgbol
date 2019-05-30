@@ -5,6 +5,7 @@
 
 #include <string>
 #include <boost/asio.hpp>
+#include <rxcpp/rx.hpp>
 
 namespace furgbol {
 namespace io {
@@ -19,9 +20,8 @@ class MulticastReceiver {
     int size_t;
 
   public:
-    MulticastReceiver(std::string group_ip,uint16_t port);
+    MulticastReceiver(std::string, uint16_t);
     ~MulticastReceiver();
-    int get_size();
 };
 
 }  // namespace io
