@@ -3,7 +3,8 @@ project(furgbol)
 
 find_package(Boost REQUIRED COMPONENTS system)
 
-include_directories("include"
+include_directories(
+  "include"
   ${Boost_INCLUDE_DIRS}
   "lib/RxCpp/Rx/v2/src")
 
@@ -13,4 +14,4 @@ target_link_libraries(furgbol_io ${Boost_SYSTEM_LIBRARY})
 
 
 add_executable(testing "src/main.cpp")
-target_link_libraries(testing furgbol_io)
+target_link_libraries(testing furgbol_io ${Boost_LIBRARIES})
