@@ -16,8 +16,12 @@ MulticastReceiver::MulticastReceiver(std::string group_ip ,uint16_t port):
     socket_.bind(endpoint_);
     socket_.set_option(
       boost::asio::ip::multicast::join_group(boost::asio::ip::address::from_string(group_ip)));
-    size_t = socket_.receive_from(boost::asio::buffer(buffer_, 8192),endpoint_);
-
+    //sincronosize_t = socket_.receive_from(boost::asio::buffer(buffer_, 8192),endpoint_);
+    size_t = socket_.async_receive_from(
+        boost::asio::buffer(buffer_, 8192), endpoint_,
+        boost::bind(&receiver::handle_receive_from, this, 
+        boost::asio::placeholders::error, 
+        boost::asio::placeholders::bytes_transferred));
 }
 
 MulticastReceiver::~MulticastReceiver() {}
