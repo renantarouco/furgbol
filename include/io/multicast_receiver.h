@@ -5,6 +5,7 @@
 
 #include <string>
 #include <boost/asio.hpp>
+#include <boost/bind.hpp>
 
 namespace furgbol {
 namespace io {
@@ -16,12 +17,13 @@ class MulticastReceiver {
     boost::asio::ip::udp::socket socket_;
     boost::asio::ip::udp::endpoint sender_endpoint_;
     char buffer_[8192];
-    int size_t;
+    int size;
 
   public:
     MulticastReceiver(std::string group_ip,uint16_t port);
     ~MulticastReceiver();
     int get_size();
+    void receive();
 };
 
 }  // namespace io
