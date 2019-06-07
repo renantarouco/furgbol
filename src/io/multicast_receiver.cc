@@ -11,38 +11,73 @@ namespace io {
 MulticastReceiver::MulticastReceiver(std::string group_ip ,uint16_t port):
     io_(),
     socket_(io_),
+    // Create the socket so that multiple may be bound to the same address
     endpoint_(boost::asio::ip::address_v4::any(), port){
     socket_.open(endpoint_.protocol());
     socket_.set_option(boost::asio::ip::udp::socket::reuse_address(true));
     socket_.bind(endpoint_);
+
+    // Join the multicast group.
     socket_.set_option(
       boost::asio::ip::multicast::join_group(boost::asio::ip::address::from_string(group_ip)));
-    //sincronosize_t = socket_.receive_from(boost::asio::buffer(buffer_, 8192),endpoint_);
+    
+    //sincrono 
+    /*size_t = socket_.receive_from(boost::asio::buffer(buffer_, 8192),endpoint_);*/
+    //assincrono
     socket_.async_receive_from(
         boost::asio::buffer(buffer_, 8192), endpoint_,
-        boost::bind(&MulticastReceiver::receive, this, 
+        boost::bind(&MulticastReceiver::do_receive, this, 
         boost::asio::placeholders::error, 
         boost::asio::placeholders::bytes_transferred));
+    io_.run();
 }
 
-void MulticastReceiver::receive(const boost::system::error_code& error, size_t bytes_recvd)
-{
+void MulticastReceiver::do_receive(const boost::system::error_code& error, size_t bytes_transferred){
     if (!error)
     {
-      std::cout<<(bytes_recvd)<<std::endl;
+      std::cout<<(bytes_transferred)<<std::endl;
 
-      size = socket_.async_receive_from(
+      socket_.async_receive_from(
           boost::asio::buffer(buffer_, 8192), sender_endpoint_,
-          boost::bind(&MulticastReceiver::receive, this,
+          boost::bind(&MulticastReceiver::do_receive, this,
             boost::asio::placeholders::error,
             boost::asio::placeholders::bytes_transferred));
     } 
 }
+/*Versão stack overflow
 
+MulticastReceiver::MulticastReceiver(std::string group_ip ,uint16_t port):
+    io_(),
+    socket_(io_),
+    // Create the socket so that multiple may be bound to the same address
+    endpoint_(boost::asio::ip::address_v4::any(), port){
+    do_receive();
+    io_service.run();
+}
+
+void MulticastReceiver::do_receive()
+{
+    socket.async_receive_from(boost::asio::buffer(recv_buffer), receiver_endpoint,
+                               boost::bind(&MulticastReceiver::handle_receive, this,
+                               boost::asio::placeholders::error,
+                               boost::asio::placeholders::bytes_transferred));
+}
+
+void MulticastReceiver::handle_receive(const boost::system::error_code& error, size_t bytes_transferred)
+{
+    std::cout << "Received: '" << std::string(recv_buffer.begin(), recv_buffer.begin()+bytes_transferred) << "'\n";
+
+    if (!error || error == boost::asio::error::message_size)
+        do_receive();
+}
+
+*/
 
 MulticastReceiver::~MulticastReceiver() {}
+/* Return do tamanho no sincrono
 int MulticastReceiver::get_size(){
     return size;
 }
+*/
 }
 }
