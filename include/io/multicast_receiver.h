@@ -22,10 +22,9 @@ class MulticastReceiver {
   public:
     MulticastReceiver(std::string group_ip,uint16_t port);
     ~MulticastReceiver();
-    int get_size();
-    void do_receive(const boost::system::error_code& error, size_t bytes_transferred);
-    //void do_receive();
-    //void handle_receive(const boost::system::error_code& error, size_t);
+    void do_receive_syn();
+    void do_receive_asyn();
+    void handle_receive(const boost::system::error_code& error, size_t bytes_transferred);
 };
 
 }  // namespace io
