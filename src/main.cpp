@@ -11,5 +11,4 @@ int main() {
     mcr.do_receive_syn();
     std::cout << "Asyn: " <<std::endl;
     mcr.do_receive_asyn();
-	
 }

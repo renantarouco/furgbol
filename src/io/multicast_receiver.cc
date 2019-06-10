@@ -41,5 +41,5 @@ void MulticastReceiver::do_receive_syn(){
   std::cout<<size<<std::endl;
 }
 MulticastReceiver::~MulticastReceiver() {}
-}
-}
+}  // namespace io
+}  // namespace furgbol
