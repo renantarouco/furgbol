@@ -15,7 +15,6 @@ class MulticastReceiver {
     boost::asio::io_service io_;
     boost::asio::ip::udp::endpoint endpoint_;
     boost::asio::ip::udp::socket socket_;
-    boost::asio::ip::udp::endpoint sender_endpoint_;
     char buffer_[8192];
     int size;
 
