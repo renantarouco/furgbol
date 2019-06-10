@@ -24,6 +24,7 @@ class MulticastReceiver {
     void do_receive_syn();
     void do_receive_asyn();
     void handle_receive(const boost::system::error_code& error, size_t bytes_transferred);
+
 };
 
 }  // namespace io
